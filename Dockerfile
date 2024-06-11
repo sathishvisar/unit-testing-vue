@@ -14,7 +14,7 @@ RUN npm install --only=production
 COPY . .
 
 # Run the web service on container startup.
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "serve" ]
 
 # Document that the service listens on port 3000.
 EXPOSE 3000
