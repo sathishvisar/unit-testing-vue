@@ -2,9 +2,9 @@ services:
   vus-app:
     build: .
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
-      - .:/usr/src/app
+      - .:/home/unit-testing-vue
     container_name: vus-app
     command: npm start
 

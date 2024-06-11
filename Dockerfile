@@ -2,7 +2,7 @@
 FROM node:18.19.0
 
 # Create and change to the app directory.
-WORKDIR /usr/src/app
+WORKDIR /home/unit-testing-vue
 
 # Install Vue CLI globally
 RUN npm install -g @vue/cli
@@ -19,5 +19,5 @@ COPY . .
 # Run the web service on container startup.
 CMD [ "npm", "run", "serve" ]
 
-# Document that the service listens on port 3000.
-EXPOSE 3000
+# Document that the service listens on port 3001.
+EXPOSE 3001
