@@ -4,6 +4,9 @@ FROM node:18.19.0
 # Create and change to the app directory.
 WORKDIR /usr/src/app
 
+# Install Vue CLI globally
+RUN npm install -g @vue/cli
+
 # Copy application dependency manifests to the container image.
 COPY package*.json ./
 
