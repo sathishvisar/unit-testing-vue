@@ -10,6 +10,9 @@ RUN npm install -g @vue/cli
 # Copy application dependency manifests to the container image.
 COPY package*.json ./
 
+# Install dependencies
+RUN npm i
+
 # Install production dependencies.
 RUN npm install --only=production
 

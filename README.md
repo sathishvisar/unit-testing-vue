@@ -99,5 +99,8 @@ Once the Docker image is built, you can run a Docker container based on that ima
 
 sh
 Copy code
-docker run -d -p 3000:3000 my-docker-project
+docker run -d -p 3001:3001 my-docker-project
 This command runs the Docker container in detached mode (-d) and maps port 3000 of the container to port 3000 on the host (-p 3000:3000).
+
+
+docker run -d -p 3001:3001 my-docker-project:latest
