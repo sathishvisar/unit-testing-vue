@@ -88,6 +88,7 @@ CMD ["npm", "start"]
 Step 3: Build the Docker Image
 In your project directory where the Dockerfile is located, build the Docker image using the docker build command:
 
+# copy code
 sh
 Copy code
 docker build -t my-docker-project .

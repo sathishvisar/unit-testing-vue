@@ -6,7 +6,7 @@ services:
     volumes:
       - .:/home/unit-testing-vue
     container_name: vus-app
-    command: npm start
+    command: npm run serve
 
   jenkins:
     image: jenkins/jenkins:lts
