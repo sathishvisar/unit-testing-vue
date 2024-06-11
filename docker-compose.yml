@@ -2,7 +2,7 @@ services:
   vus-app:
     build: .
     ports:
-      - "3001:3001"
+      - "8080:8080"
     volumes:
       - .:/home/unit-testing-vue
     container_name: vus-app
