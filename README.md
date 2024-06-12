@@ -128,6 +128,8 @@ docker run -d --name jenkins \
   jenkins/jenkins:lts
 ```
 
+## credentials
+campaygn@Campaygn@2024#
 
 
 
