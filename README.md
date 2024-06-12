@@ -58,7 +58,9 @@ And enable it to start on boot:
 sh
 Copy code
 sudo systemctl enable docker
-Step 2: Create a Dockerfile
+
+
+# Step 2: Create a Dockerfile
 Navigate to your project directory and create a Dockerfile. This file defines the environment for your Docker container.
 
 Here's a basic example for a Node.js project:
@@ -84,21 +86,17 @@ COPY . .
 EXPOSE 8080
 
 # Define the command to run the app
-CMD ["npm", "start"]
-Step 3: Build the Docker Image
+CMD ["npm", "run", "serve"]
+
+
+# Step 3: Build the Docker Image
 In your project directory where the Dockerfile is located, build the Docker image using the docker build command:
 
-# copy code
-sh
-Copy code
+## copy code
 docker build -t my-docker-project .
 Replace my-docker-project with the desired name for your Docker image.
 
-Step 4: Run the Docker Container
-Once the Docker image is built, you can run a Docker container based on that image:
-
-sh
-Copy code
+## Step 4: Run the Docker Container
 docker run -d -p 8080:8080 my-docker-project
 This command runs the Docker container in detached mode (-d) and maps port 8080 of the container to port 8080 on the host (-p 8080:8080).
 
