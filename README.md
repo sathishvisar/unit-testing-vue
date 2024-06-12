@@ -36,29 +36,34 @@ Step 1: Install Docker
 First, you need to install Docker on your Linux system. The method varies depending on your Linux distribution. Here's how you can do it for some popular distributions:
 
 Ubuntu/Debian:
-sh
-Copy code
+```
 sudo apt-get update
 sudo apt-get install docker.io
+
+```
 CentOS/RHEL:
-sh
-Copy code
+```
 sudo yum install docker
+
+```
 Fedora:
-sh
-Copy code
+```
 sudo dnf install docker
+
+```
+
 After installing Docker, start the Docker service:
 
-sh
-Copy code
+```
 sudo systemctl start docker
+
+```
 And enable it to start on boot:
 
-sh
-Copy code
+```
 sudo systemctl enable docker
 
+```
 
 # Step 2: Create a Dockerfile
 Navigate to your project directory and create a Dockerfile. This file defines the environment for your Docker container.
@@ -66,7 +71,7 @@ Navigate to your project directory and create a Dockerfile. This file defines th
 Here's a basic example for a Node.js project:
 
 Dockerfile
-Copy code
+```
 # Use an official Node.js runtime as the base image
 FROM node:14
 
@@ -87,7 +92,7 @@ EXPOSE 8080
 
 # Define the command to run the app
 CMD ["npm", "run", "serve"]
-
+```
 
 # Step 3: Build the Docker Image
 In your project directory where the Dockerfile is located, build the Docker image using the docker build command:
@@ -102,3 +107,53 @@ This command runs the Docker container in detached mode (-d) and maps port 8080 
 
 
 docker run -d -p 8080:8080 my-docker-project:latest
+
+
+
+# JinKins
+
+## Step 1: Pull the Jenkins Docker Image
+```
+docker pull jenkins/jenkins:lts
+
+```
+
+## Step 2: Run the Jenkins Container
+```
+Run the Jenkins container, mapping port 8081 on your host to port 8080 on the Jenkins container.
+docker run -d --name jenkins \
+  -p 8081:8080 \
+  -p 50000:50000 \
+  -v jenkins_home:/var/jenkins_home \
+  jenkins/jenkins:lts
+```
+
+
+
+
+# Firewall
+
+## Using ufw (Uncomplicated Firewall) on Ubuntu/Debian:
+```
+sudo ufw allow 3001
+
+```
+
+## Using iptables:
+If you're using a distribution that doesn't use ufw or firewalld, you can use iptables directly. Here's how you can allow traffic on port 3001 with iptables:
+```
+sudo iptables -A INPUT -p tcp --dport 3001 -j ACCEPT
+sudo iptables-save | sudo tee /etc/sysconfig/iptables
+
+```
+
+
+## Verify Firewall Rules:
+After applying the firewall rules, you can verify that port 3001 is open by running:
+
+```
+sudo ufw status            # For Ubuntu/Debian with ufw
+sudo firewall-cmd --list   # For CentOS/RHEL with firewalld
+sudo iptables -L           # For distributions using iptables directly
+
+```
