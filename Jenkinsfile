@@ -18,6 +18,12 @@ pipeline {
             }
         }
 
+        stage('Run ESLint') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
+
         stage('Run Unit Tests') {
             steps {
                 sh 'npm run test:unit'
