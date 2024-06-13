@@ -150,6 +150,22 @@ docker run -d --name jenkins \
   
 ```
 
+### Jenkins default password
+```
+docker logs jenkins
+
+*************************************************************
+
+Jenkins initial setup is required. An admin user has been created and a password generated.
+Please use the following password to proceed to installation:
+
+abc123def456ghi789jkl012mno345pq
+
+This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
+
+*************************************************************
+```
+
 ## credentials
 campaygn@Campaygn@2024#
 
