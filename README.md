@@ -125,10 +125,10 @@ docker run -d -p 8080:8080 my-docker-project
 ```
 This command runs the Docker container in detached mode (-d) and maps port 8080 of the container to port 8080 on the host (-p 8080:8080).
 
-
+```
 docker run -d -p 8080:8080 my-docker-project:latest
 
-
+```
 
 # JinKins
 
