@@ -2,7 +2,7 @@ import { VueWrapper, mount } from "@vue/test-utils";
 import FormView from "@/views/FormView.vue";
 
 describe("FormView.vue", () => {
-  let wrapper: VueWrapper<any>;
+  let wrapper: VueWrapper;
 
   beforeAll(() => {
     wrapper = mount(FormView);
