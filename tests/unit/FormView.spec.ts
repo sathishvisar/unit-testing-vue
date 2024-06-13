@@ -20,6 +20,5 @@ describe("FormView.vue", () => {
     await btnCancel.trigger("click");
 
     console.log(inputUsername.element);
-
   });
 });
