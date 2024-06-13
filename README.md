@@ -93,16 +93,36 @@ EXPOSE 8080
 # Define the command to run the app
 CMD ["npm", "run", "serve"]
 ```
+# Step 2.1: Docker Login
+
+```
+docker login 
+
+edit config - nano ~/.docker/config.json
+
+{
+  "auths": {
+    "https://index.docker.io/v1/": {}
+  }
+}
+```
 
 # Step 3: Build the Docker Image
 In your project directory where the Dockerfile is located, build the Docker image using the docker build command:
 
 ## copy code
+```
 docker build -t my-docker-project .
+
+```
 Replace my-docker-project with the desired name for your Docker image.
 
 ## Step 4: Run the Docker Container
+
+```
 docker run -d -p 8080:8080 my-docker-project
+
+```
 This command runs the Docker container in detached mode (-d) and maps port 8080 of the container to port 8080 on the host (-p 8080:8080).
 
 
