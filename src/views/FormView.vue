@@ -1,70 +1,68 @@
 <template>
-  <div class="login-form">
-    <input
-      v-model="username"
-      type="text"
-      placeholder="Username"
-      name="username"
-    />
-    <input
-      v-model="password"
-      type="password"
-      placeholder="Password"
-      name="password"
-    />
-    <button name="cancel" @click="cancel">Cancel</button>&nbsp;
-    <button name="login" @click="login">Login</button>
+  <div class="login-container">
+    <b-container>
+      <b-row class="justify-content-md-center">
+        <b-col md="4">
+          <b-card title="Login" class="mt-5">
+            <b-form @submit.prevent="onSubmit">
+              <b-form-group label="Email" label-for="email-input">
+                <b-form-input
+                  id="email-input"
+                  v-model="form.email"
+                  type="email"
+                  required
+                  placeholder="Enter your email"
+                />
+              </b-form-group>
+
+              <b-form-group label="Password" label-for="password-input">
+                <b-form-input
+                  id="password-input"
+                  v-model="form.password"
+                  type="password"
+                  required
+                  placeholder="Enter your password"
+                />
+              </b-form-group>
+
+              <b-row class="text-center">
+                <b-col>
+                  <b-button type="submit" variant="primary">Login</b-button>
+                </b-col>
+              </b-row>
+            </b-form>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-
-const username = ref("");
-const password = ref("");
-
-const cancel = () => {
-  // Clear username and password fields
-  username.value = "";
-  password.value = "";
-};
-
-const login = () => {
-  // Simulate login logic
-  console.log("Logging in with:", username.value, password.value);
-  // You can replace the above console.log with your actual login logic
+<script>
+export default {
+  data() {
+    return {
+      form: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    onSubmit() {
+      // Handle form submission
+      console.log("Form submitted:", this.form);
+      // Add your login logic here
+    },
+  },
 };
 </script>
 
 <style scoped>
-.login-form {
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-input {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-button {
-  display: inline-block;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
-}
-
-button:hover {
-  background-color: #0056b3;
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 </style>

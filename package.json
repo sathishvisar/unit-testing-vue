@@ -10,6 +10,9 @@
     "lint:fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
+    "@vue/compat": "^3.1.0",
+    "bootstrap": "^5.3.3",
+    "bootstrap-vue-3": "^0.5.1",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
@@ -27,6 +30,7 @@
     "@vue/cli-plugin-unit-jest": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "@vue/compiler-sfc": "^3.1.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/test-utils": "^2.0.0-0",
     "@vue/vue3-jest": "^27.0.0-alpha.1",
