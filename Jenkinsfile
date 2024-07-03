@@ -10,6 +10,7 @@ pipeline {
     }
 
     triggers {
+        echo "githubPush"
         githubPush()
     }
 
