@@ -16,8 +16,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/PR-*']], userRemoteConfigs: [[url: 'https://github.com/sathishvisar/unit-testing-vue.git']]])
+                // Checkout the current branch or PR
+                checkout scm
             }
+            // steps {
+            //     checkout([$class: 'GitSCM', branches: [[name: '*/PR-*']], userRemoteConfigs: [[url: 'https://github.com/sathishvisar/unit-testing-vue.git']]])
+            // }
             // steps {
             //     script {
             //         // Check if this is a pull request event and target is master
