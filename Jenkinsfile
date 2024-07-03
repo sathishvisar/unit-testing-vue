@@ -18,8 +18,14 @@ pipeline {
             steps {
                 // Checkout the branch or PR that triggered the build
                 script {
-                    // Dynamically checkout the SCM configuration
-                    checkout scm
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: "${env.CHANGE_BRANCH ?: env.BRANCH_NAME}"]],
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/sathishvisar/unit-testing-vue.git',
+                            credentialsId: '2fcf341a-63ca-4942-96b0-ff92262414f6' // Replace with your actual credentialsId
+                        ]]
+                    ])
                 }
             }
         }
@@ -45,7 +51,7 @@ pipeline {
 
     post {
         always {
-            junit 'path/to/test-results.xml' // Adjust the path to your test results 
+            junit 'path/to/test-results.xml' // Adjust the path to your test results
         }
         success {
             echo 'Unit tests passed!'
