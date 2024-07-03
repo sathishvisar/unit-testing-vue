@@ -16,9 +16,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the current branch or PR
-                checkout scm
+                // Checkout the branch or PR that triggered the build
+                script {
+                    echo "checkout branch from PR"
+                    // Dynamically checkout the SCM configuration
+                    checkout scm
+                }
             }
+            // steps {
+            //     // Checkout the current branch or PR
+            //     checkout scm
+            // }
             // steps {
             //     checkout([$class: 'GitSCM', branches: [[name: '*/PR-*']], userRemoteConfigs: [[url: 'https://github.com/sathishvisar/unit-testing-vue.git']]])
             // }
