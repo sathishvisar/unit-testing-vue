@@ -62,24 +62,24 @@ pipeline {
                 if (userInput) {
                     // Configure Git user
                     sh '''
-                        git config --global user.email "jenkins@example.com"
-                        git config --global user.name "Jenkins"
+                        git config --global user.email "dev@campaygn.com"
+                        git config --global user.name "dev_campaygn"
                     '''
 
                     // Checkout the target branch
                     sh '''
-                        git checkout main
-                        git pull origin main
+                        git checkout master
+                        git pull origin master
                     '''
 
                     // Merge the current branch into the target branch
                     sh '''
-                        git merge ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} --no-ff -m "Merge branch ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} into main"
+                        git merge ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} --no-ff -m "Merge branch ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} into master"
                     '''
 
                     // Push the changes to the remote repository
                     sh '''
-                        git push origin main
+                        git push origin master
                     '''
 
                     // Build and deploy Docker image
