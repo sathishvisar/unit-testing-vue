@@ -50,9 +50,6 @@ pipeline {
     }
 
     post {
-        always {
-            junit 'path/to/test-results.xml' // Adjust the path to your test results
-        }
         success {
             echo 'Unit tests passed!'
         }
