@@ -15,9 +15,13 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
-                git branch: '${env.CHANGE_TARGET}', url: 'https://github.com/sathishvisar/unit-testing-vue.git'
+            script {
+                def branch = env.CHANGE_BRANCH ?: 'master'
+                git branch: branch, url: 'https://github.com/sathishvisar/unit-testing-vue.git'
             }
+            // steps {
+            //     git branch: '${env.CHANGE_TARGET}', url: 'https://github.com/sathishvisar/unit-testing-vue.git'
+            // }
         }
 
         stage('Install Dependencies') {
