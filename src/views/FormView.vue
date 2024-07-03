@@ -26,7 +26,8 @@
               </b-form-group>
 
               <b-row class="text-center">
-                <b-col>
+                <b-col class="d-flex justify-content-between">
+                  <b-button type="submit" variant="primary">Cancel</b-button>
                   <b-button type="submit" variant="primary">Login</b-button>
                 </b-col>
               </b-row>
