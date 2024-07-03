@@ -27,6 +27,7 @@ pipeline {
             //     // Checkout the current branch or PR
             //     checkout scm
             // }
+            
             // steps {
             //     checkout([$class: 'GitSCM', branches: [[name: '*/PR-*']], userRemoteConfigs: [[url: 'https://github.com/sathishvisar/unit-testing-vue.git']]])
             // }
