@@ -10,7 +10,6 @@ pipeline {
     }
 
     triggers {
-        echo "githubPush"
         githubPush()
     }
 
@@ -18,8 +17,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    echo "githubPush"
-                    echo env
                     // Check if this is a pull request event and target is master
                     if (env.CHANGE_ID && env.CHANGE_TARGET == 'master') {
                         def repoUrl = 'https://github.com/sathishvisar/unit-testing-vue.git'
