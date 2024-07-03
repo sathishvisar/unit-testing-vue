@@ -51,15 +51,13 @@ pipeline {
 
     post {
         success {
-            steps {
-                echo 'Unit tests passed!'
+            echo 'Unit tests passed!'
 
-                script {
-                    def userInput = input(
-                        message: 'Do you want to proceed with the merge and deployment?',
-                        parameters: [booleanParam(defaultValue: true, description: '', name: 'Proceed')]
-                    )
-                }
+            script {
+                def userInput = input(
+                    message: 'Do you want to proceed with the merge and deployment?',
+                    parameters: [booleanParam(defaultValue: true, description: '', name: 'Proceed')]
+                )
             }
         }
     }
