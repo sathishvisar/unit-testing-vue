@@ -66,20 +66,23 @@ pipeline {
                         git config --global user.name "dev_campaygn"
                     '''
 
+                    // Determine target branch name (default to 'main')
+                    def targetBranch = 'master' // Change to 'master' if your repository still uses 'master'
+
                     // Checkout the target branch
                     sh '''
-                        git checkout master
-                        git pull origin master
+                        git checkout ${targetBranch}
+                        git pull origin ${targetBranch}
                     '''
 
                     // Merge the current branch into the target branch
                     sh '''
-                        git merge ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} --no-ff -m "Merge branch ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} into master"
+                        git merge ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} --no-ff -m "Merge branch ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} into ${targetBranch}"
                     '''
 
                     // Push the changes to the remote repository
                     sh '''
-                        git push origin master
+                        git push origin ${targetBranch}
                     '''
 
                     // Build and deploy Docker image
