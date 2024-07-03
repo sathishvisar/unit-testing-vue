@@ -12,8 +12,8 @@ describe("FormView.vue", () => {
     const inputUsername = wrapper.find('input[type="text"]');
     const inputPassword = wrapper.find('input[type="text"]');
     const btnCancel = wrapper.find('button[name="cancel"]');
-    // const btnLogin = wrapper.find('button[name="login"]');
-    
+    const btnLogin = wrapper.find('button[name="login"]');
+
 
     inputUsername.setValue("admin");
     inputPassword.setValue("Admin@123#");
