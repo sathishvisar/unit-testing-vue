@@ -58,6 +58,52 @@ pipeline {
                     message: 'Do you want to proceed with the merge and deployment?',
                     parameters: [booleanParam(defaultValue: true, description: '', name: 'Proceed')]
                 )
+
+                if (userInput) {
+                    // Configure Git user
+                    sh '''
+                        git config --global user.email "jenkins@example.com"
+                        git config --global user.name "Jenkins"
+                    '''
+
+                    // Checkout the target branch
+                    sh '''
+                        git checkout main
+                        git pull origin main
+                    '''
+
+                    // Merge the current branch into the target branch
+                    sh '''
+                        git merge ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} --no-ff -m "Merge branch ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} into main"
+                    '''
+
+                    // Push the changes to the remote repository
+                    sh '''
+                        git push origin main
+                    '''
+
+                    // Build and deploy Docker image
+                    // def dockerImageName = "sathishvisar/unit-testing-vue"
+                    // def dockerImageTag = "${env.BUILD_NUMBER}"
+
+                    // Build Docker image
+                    // sh "docker build -t ${dockerImageName}:${dockerImageTag} ."
+
+                    // // Push Docker image to Docker Hub (optional)
+                    // withCredentials([string(credentialsId: '2fcf341a-63ca-4942-96b0-ff92262414f6', variable: 'DOCKERHUB_PASSWORD')]) {
+                    //     sh '''
+                    //         echo ${DOCKERHUB_PASSWORD} | docker login -u sathishvisar --password-stdin
+                    //         docker push ${dockerImageName}:${dockerImageTag}
+                    //     '''
+                    // }
+
+                    // // Deploy Docker container
+                    // sh '''
+                    //     docker run -d --name unit-testing-vue-${dockerImageTag} -p 80:80 ${dockerImageName}:${dockerImageTag}
+                    // '''
+                } else {
+                    echo 'Deployment aborted by the user.'
+                }
             }
         }
     }
