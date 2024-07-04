@@ -22,7 +22,7 @@ pipeline {
                         $class: 'GitSCM',
                         branches: [[name: "${env.CHANGE_BRANCH ?: env.BRANCH_NAME}"]],
                         userRemoteConfigs: [[
-                            url: 'https://github.com/sathishvisar/unit-testing-vue.git',
+                            url: 'git@github.com:sathishvisar/unit-testing-vue.git',
                             credentialsId: '2fcf341a-63ca-4942-96b0-ff92262414f6' // Replace with your actual credentialsId
                         ]]
                     ])
@@ -68,7 +68,7 @@ pipeline {
                     sh """
                         git config --global user.email '${GIT_USEREMAIL}'
                         git config --global user.name '${GIT_USERNAME}'
-                        git remote set-url origin 'https://github.com/sathishvisar/unit-testing-vue.git'
+                        git remote set-url origin git@github.com:sathishvisar/unit-testing-vue.git
                     """
 
                     // Determine target branch name (default to 'master')
