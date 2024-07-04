@@ -61,10 +61,15 @@ pipeline {
 
                 if (userInput) {
                     // Configure Git user
-                    sh '''
-                        git config --global user.email "sathish.visar@gmail.com"
-                        git config --global user.name "sathishvisar"
-                    '''
+                    def GIT_USEREMAIL = 'sathish.visar@gmail.com'
+                    def GIT_USERNAME = 'sathishvisar'
+                    def GIT_PASSWORD = 'Sathish@2282#'
+
+                    sh """
+                        git config --global user.email "${GIT_USEREMAIL}"
+                        git config --global user.name "${GIT_USERNAME}"
+                        git config --global user.password "${GIT_PASSWORD}"
+                    """
 
                     // Determine target branch name (default to 'main')
                     def targetBranch = 'master' // Change to 'master' if your repository still uses 'master'
@@ -74,7 +79,7 @@ pipeline {
                     echo targetBranch
 
                     // Push the changes to the remote repository
-                    sh """
+                    sh """                        
                         set -e
                         echo "Current branch: ${branchName}"
                         echo "Target branch: ${targetBranch}"
