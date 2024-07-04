@@ -23,7 +23,7 @@ pipeline {
                         branches: [[name: "${env.CHANGE_BRANCH ?: env.BRANCH_NAME}"]],
                         userRemoteConfigs: [[
                             url: 'https://github.com/sathishvisar/unit-testing-vue.git',
-                            credentialsId: 'c641a456-21ac-43a9-a422-7809a0488410' // Replace with your actual credentialsId
+                            credentialsId: 'aa79b591-6a52-45fa-a254-b2d7d0df55b9'
                         ]]
                     ])
                 }
@@ -90,7 +90,7 @@ pipeline {
                     // Push the changes to the remote repository
                     sh "git push origin ${targetBranch}"
                     
-                    // Deploy to Docker
+                    // Deploy to Docker (add your deployment steps here)
                     echo 'Deploy to Docker'
                  
                 } else {
