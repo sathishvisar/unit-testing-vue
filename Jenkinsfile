@@ -81,7 +81,7 @@ pipeline {
 
                     // Push the changes to the remote repository
                     sh """
-                        git merge origin ${branchName} --no-ff -m "Merge branch ${branchName} into main"
+                        git merge origin/${branchName} --no-ff -m 'Merge branch ${branchName} into main'
 
                         git push origin ${targetBranch}
                     """
