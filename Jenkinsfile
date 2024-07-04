@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         CI = 'true'
+        GIT_SSH_COMMAND = "ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no"
     }
 
     triggers {
@@ -63,11 +64,12 @@ pipeline {
                     // Configure Git user
                     def GIT_USEREMAIL = 'sathish.visar@gmail.com'
                     def GIT_USERNAME = 'sathishvisar'
-                    def GIT_PASSWORD = 'Sathish@2282#'
+                    def GIT_PASSWORD = 'Sathish2282'
 
                     sh """
                         git config --global user.email '${GIT_USEREMAIL}'
                         git config --global user.name '${GIT_USERNAME}'
+                        git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/sathishvisar/unit-testing-vue.git
                     """
 
                     // Determine target branch name (default to 'master')
