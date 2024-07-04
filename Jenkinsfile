@@ -68,7 +68,6 @@ pipeline {
                     sh """
                         git config --global user.email '${GIT_USEREMAIL}'
                         git config --global user.name '${GIT_USERNAME}'
-                        git remote set-url origin git@github.com:sathishvisar/unit-testing-vue.git
                     """
 
                     // Determine target branch name (default to 'master')
@@ -93,7 +92,7 @@ pipeline {
                     
                     // Deploy to Docker
                     echo 'Deploy to Docker'
-                    
+
 
                     // sh '''
                     //     docker build -t my-docker-project .
