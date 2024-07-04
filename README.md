@@ -67,7 +67,7 @@ sudo systemctl enable docker
 
 # Step 2: Create a Dockerfile
 Navigate to your project directory and create a Dockerfile. This file defines the environment for your Docker container.
-
+     ### ##
 Here's a basic example for a Node.js project:
 
 Dockerfile
