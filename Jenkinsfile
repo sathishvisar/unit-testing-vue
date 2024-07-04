@@ -62,8 +62,8 @@ pipeline {
                 if (userInput) {
                     // Configure Git user
                     sh '''
-                        git config --global user.email "dev@campaygn.com"
-                        git config --global user.name "dev_campaygn"
+                        git config --global user.email "sathish.visar@gmail.com"
+                        git config --global user.name "sathishvisar"
                     '''
 
                     // Determine target branch name (default to 'main')
