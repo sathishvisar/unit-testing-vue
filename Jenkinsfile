@@ -70,19 +70,26 @@ pipeline {
                     def targetBranch = 'master' // Change to 'master' if your repository still uses 'master'
                     def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
 
-                    // Checkout the target branch
-                    sh '''
-                        git checkout ${targetBranch}
-                        git pull origin ${targetBranch}
-                    '''
-
                     echo branchName
                     echo targetBranch
 
                     // Push the changes to the remote repository
                     sh """
-                        git merge origin/${branchName} --no-ff -m 'Merge branch ${branchName} into master' || true
+                        set -e
+                        echo "Current branch: ${branchName}"
+                        echo "Target branch: ${targetBranch}"
+                        
+                        # Fetch all branches to ensure the target branch is up to date
+                        git fetch origin
 
+                        # Checkout the target branch
+                        git checkout ${targetBranch}
+                        git pull origin ${targetBranch}
+
+                        # Merge the current branch into the target branch
+                        git merge origin/${branchName} --no-ff -m "Merge branch ${branchName} into ${targetBranch}" || true
+
+                        # Push the changes to the remote repository
                         git push origin ${targetBranch}
                     """
 
