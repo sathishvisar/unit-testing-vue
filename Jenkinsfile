@@ -80,7 +80,6 @@ pipeline {
                     // Fetch all branches to ensure the target branch is up to date
                     sh 'git fetch origin'
                     
-
                     // Checkout the target branch
                     sh "git checkout ${targetBranch} || git checkout -b ${targetBranch} origin/${targetBranch}"
                     sh "git pull origin ${targetBranch}"
@@ -93,13 +92,6 @@ pipeline {
                     
                     // Deploy to Docker
                     echo 'Deploy to Docker'
-
-
-                    // sh '''
-                    //     docker build -t my-docker-project .
-                    //     docker run -d -p 8080:8080 my-docker-project
-                    // '''
-
                  
                 } else {
                     echo 'Deployment aborted by the user.'
