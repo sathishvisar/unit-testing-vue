@@ -93,6 +93,7 @@ pipeline {
                     
                     // Deploy to Docker
                     echo 'Deploy to Docker'
+                    
 
                     // sh '''
                     //     docker build -t my-docker-project .
