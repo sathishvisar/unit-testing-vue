@@ -85,7 +85,8 @@ pipeline {
                         # Checkout the target branch
                         git checkout ${targetBranch}
                         git pull origin ${targetBranch}
-
+                        
+                        echo "Merge branch: ${branchName} --> ${targetBranch}"
                         # Merge the current branch into the target branch
                         git merge origin/${branchName} --no-ff -m "Merge branch ${branchName} into ${targetBranch}" || true
 
