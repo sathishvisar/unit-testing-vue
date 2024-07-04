@@ -68,6 +68,7 @@ pipeline {
 
                     // Determine target branch name (default to 'main')
                     def targetBranch = 'master' // Change to 'master' if your repository still uses 'master'
+                    def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
 
                     // Checkout the target branch
                     sh '''
@@ -75,14 +76,12 @@ pipeline {
                         git pull origin ${targetBranch}
                     '''
 
-                    // Merge the current branch into the target branch
-                    // git merge ${BRANCH_NAME} --no-ff -m "Merge branch ${BRANCH_NAME} into master"
-                    sh '''
-                        git merge origin/${env.CHANGE_BRANCH ?: env.BRANCH_NAME} --no-ff -m "Merge branch ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} into master"
-                    '''
+
 
                     // Push the changes to the remote repository
                     sh '''
+                        git merge origin/${branchName} --no-ff -m "Merge branch ${branchName} into main"
+
                         git push origin ${targetBranch}
                     '''
 
