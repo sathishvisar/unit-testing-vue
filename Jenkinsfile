@@ -79,6 +79,7 @@ pipeline {
                     
                     // Fetch all branches to ensure the target branch is up to date
                     sh 'git fetch origin'
+                    
 
                     // Checkout the target branch
                     sh "git checkout ${targetBranch} || git checkout -b ${targetBranch} origin/${targetBranch}"
