@@ -65,6 +65,8 @@ pipeline {
                     def GIT_USERNAME = 'sathishvisar'
                     def GIT_PASSWORD = 'Sathish@2282#'
 
+                    sh "git remote add origin git@github.com:sathishvisar/unit-testing-vue.git"
+
                     sh """
                         git config --global user.email '${GIT_USEREMAIL}'
                         git config --global user.name '${GIT_USERNAME}'
