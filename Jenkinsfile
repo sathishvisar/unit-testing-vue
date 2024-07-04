@@ -86,25 +86,7 @@ pipeline {
                         git push origin ${targetBranch}
                     """
 
-                    // Build and deploy Docker image
-                    // def dockerImageName = "sathishvisar/unit-testing-vue"
-                    // def dockerImageTag = "${env.BUILD_NUMBER}"
-
-                    // Build Docker image
-                    // sh "docker build -t ${dockerImageName}:${dockerImageTag} ."
-
-                    // // Push Docker image to Docker Hub (optional)
-                    // withCredentials([string(credentialsId: '2fcf341a-63ca-4942-96b0-ff92262414f6', variable: 'DOCKERHUB_PASSWORD')]) {
-                    //     sh '''
-                    //         echo ${DOCKERHUB_PASSWORD} | docker login -u sathishvisar --password-stdin
-                    //         docker push ${dockerImageName}:${dockerImageTag}
-                    //     '''
-                    // }
-
-                    // // Deploy Docker container
-                    // sh '''
-                    //     docker run -d --name unit-testing-vue-${dockerImageTag} -p 80:80 ${dockerImageName}:${dockerImageTag}
-                    // '''
+                 
                 } else {
                     echo 'Deployment aborted by the user.'
                 }
