@@ -77,7 +77,7 @@ pipeline {
 
                     // Merge the current branch into the target branch
                     sh '''
-                        git merge ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} --no-ff -m "Merge branch ${env.CHANGE_BRANCH ?: env.BRANCH_NAME} into ${targetBranch}"
+                        git merge ${BRANCH_NAME} --no-ff -m "Merge branch ${BRANCH_NAME} into master"
                     '''
 
                     // Push the changes to the remote repository
