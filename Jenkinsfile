@@ -22,8 +22,8 @@ pipeline {
                         $class: 'GitSCM',
                         branches: [[name: "${env.CHANGE_BRANCH ?: env.BRANCH_NAME}"]],
                         userRemoteConfigs: [[
-                            url: 'git@github.com:sathishvisar/unit-testing-vue.git',
-                            credentialsId: 'c641a456-21ac-43a9-a422-7809a0488410'
+                            url: 'https://github.com/sathishvisar/unit-testing-vue.git',
+                            credentialsId: 'aa79b591-6a52-45fa-a254-b2d7d0df55b9'
                         ]]
                     ])
                 }
@@ -64,8 +64,6 @@ pipeline {
                     def GIT_USEREMAIL = 'sathish.visar@gmail.com'
                     def GIT_USERNAME = 'sathishvisar'
                     def GIT_PASSWORD = 'Sathish@2282#'
-
-                    sh "git remote add origin git@github.com:sathishvisar/unit-testing-vue.git"
 
                     sh """
                         git config --global user.email '${GIT_USEREMAIL}'
