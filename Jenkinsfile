@@ -71,34 +71,26 @@ pipeline {
                         git remote set-url origin 'https://github.com/sathishvisar/unit-testing-vue.git'
                     """
 
-                    // Determine target branch name (default to 'main')
-                    def targetBranch = 'master' // Change to 'master' if your repository still uses 'master'
+                    // Determine target branch name (default to 'master')
+                    def targetBranch = 'master'
                     def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
 
-                    echo branchName
-                    echo targetBranch
+                    echo "Current branch: ${branchName}"
+                    echo "Target branch: ${targetBranch}"
+                    
+                    // Fetch all branches to ensure the target branch is up to date
+                    sh 'git fetch origin'
+
+                    // Checkout the target branch
+                    sh "git checkout ${targetBranch} || git checkout -b ${targetBranch} origin/${targetBranch}"
+                    sh "git pull origin ${targetBranch}"
+                    
+                    // Merge the current branch into the target branch
+                    sh "git merge origin/${branchName} --no-ff -m 'Merge branch ${branchName} into ${targetBranch}' || true"
 
                     // Push the changes to the remote repository
-                    sh """                        
-                        set -e
-                        echo "Current branch: ${branchName}"
-                        echo "Target branch: ${targetBranch}"
-                        
-                        # Fetch all branches to ensure the target branch is up to date
-                        git fetch origin
-
-                        # Checkout the target branch
-                        git checkout ${targetBranch} || git checkout -b ${targetBranch} origin/${targetBranch}
-                        git pull origin ${targetBranch}
-                        
-                        echo "Merge branch: ${branchName} --> ${targetBranch}"
-                        # Merge the current branch into the target branch
-                        git merge origin/${branchName} --no-ff -m "Merge branch ${branchName} into ${targetBranch}" || true
-
-                        # Push the changes to the remote repository
-                        git push origin ${targetBranch}
-                    """
-
+                    sh "git push origin ${targetBranch}"
+                    
                     // Deploy to Docker
                     echo 'Deploy to Docker'
 
