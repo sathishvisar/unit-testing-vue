@@ -22,7 +22,7 @@ pipeline {
                         $class: 'GitSCM',
                         branches: [[name: "${env.CHANGE_BRANCH ?: env.BRANCH_NAME}"]],
                         userRemoteConfigs: [[
-                            url: 'https://github.com/sathishvisar/unit-testing-vue.git',
+                            url: 'git@github.com:sathishvisar/unit-testing-vue.git',
                             credentialsId: 'c641a456-21ac-43a9-a422-7809a0488410' // Replace with your actual credentialsId
                         ]]
                     ])
