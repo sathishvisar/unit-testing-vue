@@ -69,6 +69,7 @@ pipeline {
                     sh """
                         git config --global user.email '${GIT_USEREMAIL}'
                         git config --global user.name '${GIT_USERNAME}'
+                        git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/sathishvisar/unit-testing-vue.git
                     """
 
                     // Determine target branch name (default to 'master')
