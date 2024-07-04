@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         CI = 'true'
+        GIT_SSH_COMMAND = "ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no"
     }
 
     triggers {
