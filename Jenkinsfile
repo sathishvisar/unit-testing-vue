@@ -76,15 +76,15 @@ pipeline {
                         git pull origin ${targetBranch}
                     '''
 
-
                     echo branchName
                     echo targetBranch
+
                     // Push the changes to the remote repository
-                    sh '''
+                    sh """
                         git merge origin/${branchName} --no-ff -m "Merge branch ${branchName} into main"
 
                         git push origin ${targetBranch}
-                    '''
+                    """
 
                     // Build and deploy Docker image
                     // def dockerImageName = "sathishvisar/unit-testing-vue"
