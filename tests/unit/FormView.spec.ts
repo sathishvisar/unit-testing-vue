@@ -1,8 +1,7 @@
-import { VueWrapper, mount, shallowMount } from "@vue/test-utils";
+import { VueWrapper, mount } from "@vue/test-utils";
 import FormView from "@/views/FormView.vue";
 
 describe("FormView.vue", () => {
-  // @typescript-eslint/no-explicit-any
   let wrapper: VueWrapper<InstanceType<typeof FormView>>;
 
   beforeAll(() => {
