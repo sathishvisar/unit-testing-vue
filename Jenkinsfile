@@ -64,7 +64,7 @@ pipeline {
                     // Configure Git user
                     def GIT_USEREMAIL = 'sathish.visar@gmail.com'
                     def GIT_USERNAME = 'sathishvisar'
-                    def GIT_PASSWORD = 'Sathish@2282#'
+                    def GIT_PASSWORD = 'Sathish2282'
 
                     sh """
                         git config --global user.email '${GIT_USEREMAIL}'
