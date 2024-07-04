@@ -70,41 +70,39 @@ pipeline {
                     def targetBranch = 'master' // Change to 'master' if your repository still uses 'master'
                     def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
 
-                    // Checkout the target branch
-                    sh '''
-                        git checkout ${targetBranch}
-                        git pull origin ${targetBranch}
-                    '''
-
                     echo branchName
                     echo targetBranch
 
                     // Push the changes to the remote repository
                     sh """
-                        git merge origin/${branchName} --no-ff -m 'Merge branch ${branchName} into main'
+                        set -e
+                        echo "Current branch: ${branchName}"
+                        echo "Target branch: ${targetBranch}"
+                        
+                        # Fetch all branches to ensure the target branch is up to date
+                        git fetch origin
 
+                        # Checkout the target branch
+                        git checkout ${targetBranch} || git checkout -b ${targetBranch} origin/${targetBranch}
+                        git pull origin ${targetBranch}
+                        
+                        echo "Merge branch: ${branchName} --> ${targetBranch}"
+                        # Merge the current branch into the target branch
+                        git merge origin/${branchName} --no-ff -m "Merge branch ${branchName} into ${targetBranch}" || true
+
+                        # Push the changes to the remote repository
                         git push origin ${targetBranch}
                     """
 
-                    // Build and deploy Docker image
-                    // def dockerImageName = "sathishvisar/unit-testing-vue"
-                    // def dockerImageTag = "${env.BUILD_NUMBER}"
+                    // Deploy to Docker
+                    echo 'Deploy to Docker'
 
-                    // Build Docker image
-                    // sh "docker build -t ${dockerImageName}:${dockerImageTag} ."
-
-                    // // Push Docker image to Docker Hub (optional)
-                    // withCredentials([string(credentialsId: '2fcf341a-63ca-4942-96b0-ff92262414f6', variable: 'DOCKERHUB_PASSWORD')]) {
-                    //     sh '''
-                    //         echo ${DOCKERHUB_PASSWORD} | docker login -u sathishvisar --password-stdin
-                    //         docker push ${dockerImageName}:${dockerImageTag}
-                    //     '''
-                    // }
-
-                    // // Deploy Docker container
                     // sh '''
-                    //     docker run -d --name unit-testing-vue-${dockerImageTag} -p 80:80 ${dockerImageName}:${dockerImageTag}
+                    //     docker build -t my-docker-project .
+                    //     docker run -d -p 8080:8080 my-docker-project
                     // '''
+
+                 
                 } else {
                     echo 'Deployment aborted by the user.'
                 }
