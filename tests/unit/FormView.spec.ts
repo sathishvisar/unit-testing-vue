@@ -1,28 +1,25 @@
-import { VueWrapper, mount } from "@vue/test-utils";
+import { VueWrapper, mount, shallowMount } from "@vue/test-utils";
 import FormView from "@/views/FormView.vue";
 
 describe("FormView.vue", () => {
   // @typescript-eslint/no-explicit-any
-  let wrapper: VueWrapper<any>;
+  let wrapper: VueWrapper<InstanceType<typeof FormView>>;
 
   beforeAll(() => {
     wrapper = mount(FormView);
   });
 
   it("login without username & password", async () => {
-    // Debugging: Log the HTML of the mounted component
-    console.log(wrapper.html());
-
+    console.log("HTML structure of the wrapper:", wrapper.html());
     // Find input elements
-    const inputUsername = wrapper.find('input[type="text"]');
-    const inputPassword = wrapper.find('input[type="password"]');
-    const btnCancel = wrapper.find('button[name="cancel"]');
+    // Select elements based on the IDs used in the template
+    const inputEmail = wrapper.find('#email-input');
+    const inputPassword = wrapper.find('#password-input');
 
-    // Debugging: Log the found elements
-    console.log("Input Username:", inputUsername.exists());
-    console.log("Input Password:", inputPassword.exists());
-    console.log("Cancel Button:", btnCancel.exists());
+    // Check if the elements exist before interacting with them
+    expect(inputEmail.exists()).toBe(true);
+    expect(inputPassword.exists()).toBe(true);
 
-    // Add your assertions here based on the expected behavior after cancel click
+
   });
 });
