@@ -66,9 +66,9 @@ pipeline {
                     def GIT_PASSWORD = 'Sathish@2282#'
 
                     sh """
-                        git config --global user.email "${GIT_USEREMAIL}"
-                        git config --global user.name "${GIT_USERNAME}"
-                        git remote set-url origin 'https://github.com/sathishvisar/unit-testing-vue.git'"
+                        git config --global user.email '${GIT_USEREMAIL}'
+                        git config --global user.name '${GIT_USERNAME}'
+                        git remote set-url origin 'https://github.com/sathishvisar/unit-testing-vue.git'
                     """
 
                     // Determine target branch name (default to 'main')
