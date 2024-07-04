@@ -81,10 +81,18 @@ pipeline {
 
                     // Push the changes to the remote repository
                     sh """
-                        git merge origin/${branchName} --no-ff -m 'Merge branch ${branchName} into main'
+                        git merge origin/${branchName} --no-ff -m 'Merge branch ${branchName} into master' || true
 
                         git push origin ${targetBranch}
                     """
+
+                    // Deploy to Docker
+                    echo 'Deploy to Docker'
+
+                    // sh '''
+                    //     docker build -t my-docker-project .
+                    //     docker run -d -p 8080:8080 my-docker-project
+                    // '''
 
                  
                 } else {
