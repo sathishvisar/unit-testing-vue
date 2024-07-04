@@ -89,7 +89,7 @@ pipeline {
                     sh "git merge origin/${branchName} --no-ff -m 'Merge branch ${branchName} into ${targetBranch}' || true"
 
                     // Push the changes to the remote repository
-                    sh "git push origin ${targetBranch}"
+                    sh "git push --set-upstream origin ${targetBranch}"
                     
                     // Deploy to Docker
                     echo 'Deploy to Docker'
