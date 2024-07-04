@@ -7,7 +7,6 @@ pipeline {
 
     environment {
         CI = 'true'
-        // GIT_SSH_COMMAND = "ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no"
     }
 
     triggers {
@@ -91,7 +90,7 @@ pipeline {
                     // Push the changes to the remote repository
                     sh "git push origin ${targetBranch}"
                     
-                    // Deploy to Docker
+                    // Deploy to Docker (add your deployment steps here)
                     echo 'Deploy to Docker'
                  
                 } else {
