@@ -83,7 +83,7 @@ pipeline {
                         git fetch origin
 
                         # Checkout the target branch
-                        git checkout ${targetBranch}
+                        git checkout ${targetBranch} || git checkout -b ${targetBranch} origin/${targetBranch}
                         git pull origin ${targetBranch}
                         
                         echo "Merge branch: ${branchName} --> ${targetBranch}"
