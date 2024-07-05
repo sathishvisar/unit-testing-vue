@@ -8,6 +8,7 @@ pipeline {
     environment {
         CI = 'true'
         GIT_SSH_COMMAND = "ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no"
+        DOCKER_CREDENTIALS = "66d41917-7608-47f9-a7a1-2f39e2891ca3"
     }
 
     triggers {
@@ -94,6 +95,13 @@ pipeline {
                     
                     // Deploy to Docker (add your deployment steps here)
                     echo 'Deploy to Docker'
+
+                    // Example Docker commands:
+                    // sh '''
+                    //     docker build -t my-docker-project .
+                    //     docker run -d -p 8080:8080 my-docker-project
+                    // '''
+
                  
                 } else {
                     echo 'Deployment aborted by the user.'
