@@ -97,10 +97,10 @@ pipeline {
                     echo 'Deploy to Docker'
 
                     // Example Docker commands:
-                    sh '''
-                        docker stop my-docker-project
-                        docker run -d -p 8080:8080 my-docker-project
-                    '''
+                    // sh '''
+                    //     docker stop my-docker-project
+                    //     docker run -d -p 8080:8080 my-docker-project
+                    // '''
 
                  
                 } else {
@@ -110,3 +110,38 @@ pipeline {
         }
     }
 }
+
+/*
+
+docker run -d -p 8080:8080 -p 50000:50000 \
+  -v /path/to/.ssh:/var/jenkins_home/.ssh \
+  -v jenkins-ssh-keys:/var/jenkins_home \
+  --name jenkins jenkins/jenkins:lts
+
+
+
+docker run -d --name jenkins \
+  -p 8081:8080 \
+  -p 50000:50000 \
+  -v /root/.ssh:/var/jenkins_home/.ssh \
+  -v jenkins_home:/var/jenkins_home \
+  jenkins/jenkins:lts
+  
+docker exec -u 0 -it jenkins bash
+
+root@7c7caeaef0f1:/# eval $(ssh-agent -s)
+ssh-add /var/jenkins_home/.ssh/id_rsa
+
+Agent pid 328
+Identity added: /var/jenkins_home/.ssh/id_rsa (root@scraping-api)
+root@7c7caeaef0f1:/# cat /var/jenkins_home/.ssh/known_hosts
+
+Check permissions:
+sudo chown -R jenkins:jenkins /var/jenkins_home/.ssh
+sudo chmod 700 /var/jenkins_home/.ssh
+sudo chmod 600 /var/jenkins_home/.ssh/*
+
+Test SSH Connection:
+ssh -i /var/jenkins_home/.ssh/id_rsa git@github.com
+
+*/
