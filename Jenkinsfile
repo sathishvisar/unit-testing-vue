@@ -97,7 +97,6 @@ pipeline {
                     echo 'Deploy to Docker'
 
                     // Example Docker commands:
-
                     // sh '''
                     //     docker build -t my-docker-project .
                     //     docker run -d -p 8080:8080 my-docker-project
