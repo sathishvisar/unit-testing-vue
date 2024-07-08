@@ -110,15 +110,21 @@ pipeline {
 
                     // Run the new container with a different name and expose ports
                     sh "docker run -d -p 8082:8080 --name ${containerName}-new ${dockerImage}"
-
                     // Wait for the new container to be healthy (optional but recommended)
                     sh "docker wait ${containerName}-new"
 
                     // Remove the old container
-                    // sh "docker stop ${containerName} && docker rm ${containerName}"
+                    sh "docker stop ${containerName} && docker rm ${containerName}"
+                    sh "docker run -d -p 8081:8080 --name ${containerName} ${dockerImage}"
+                    sh "docker wait ${containerName}"
+
+                    sh "docker stop ${containerName}-new && docker rm ${containerName}-new"
+
 
                     // Rename the new container to the original name
                     // sh "docker rename ${containerName}-new ${containerName}"
+
+
 
                     // Build Docker image
                     // sh """
