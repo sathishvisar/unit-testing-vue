@@ -8,7 +8,7 @@ pipeline {
     environment {
         CI = 'true'
         GIT_SSH_COMMAND = "ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no"
-        DOCKER_CREDENTIALS = "66d41917-7608-47f9-a7a1-2f39e2891ca3"
+        DOCKER_CREDENTIALS = "cad86e44-afa1-476e-aedd-6d45655cce50"
     }
 
     triggers {
@@ -25,7 +25,7 @@ pipeline {
                         branches: [[name: "${env.CHANGE_BRANCH ?: env.BRANCH_NAME}"]],
                         userRemoteConfigs: [[
                             url: 'https://github.com/sathishvisar/unit-testing-vue.git',
-                            credentialsId: 'aa79b591-6a52-45fa-a254-b2d7d0df55b9'
+                            credentialsId: 'cad86e44-afa1-476e-aedd-6d45655cce50'
                         ]]
                     ])
                 }
@@ -97,6 +97,7 @@ pipeline {
                     echo 'Deploy to Docker'
 
                     // Example Docker commands:
+                    
                     // sh '''
                     //     docker stop my-docker-project
                     //     docker run -d -p 8080:8080 my-docker-project
