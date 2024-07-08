@@ -4,6 +4,9 @@ FROM node:18.19.0
 # Create and change to the app directory.
 WORKDIR /home/unit-testing-vue
 
+# Git checkout master and pull latest changes from origin master
+RUN git stash && git checkout master && git pull origin master
+
 # Install Vue CLI globally
 RUN npm install -g @vue/cli
 
