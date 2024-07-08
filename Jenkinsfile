@@ -136,8 +136,6 @@ pipeline {
                     //     sh "docker run -d -p 8081:8080 my-docker-project:latest"
                     // }
 
-                    
-
                 } else {
                     echo 'Deployment aborted by the user.'
                 }
