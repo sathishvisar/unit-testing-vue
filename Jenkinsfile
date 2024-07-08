@@ -108,7 +108,7 @@ pipeline {
                     def dockerFilePath = '/home/unit-testing-vue/Dockerfile'
                     docker.build("my-docker-project:latest", "-f ${dockerFilePath} .").inside {
                         // Run Docker container
-                        sh "docker run -d -p 8081:8080 my-docker-project:latest"
+                        sh "/usr/bin/docker run -d -p 8081:8080 my-docker-project:latest"
                     }
 
                 } else {
