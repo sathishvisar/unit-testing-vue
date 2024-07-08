@@ -91,7 +91,7 @@ pipeline {
                     sh "git merge origin/${branchName} --no-ff -m 'Merge branch ${branchName} into ${targetBranch}' || true"
 
                     // Push the changes to the remote repository
-                    sh "git push origin ${targetBranch}"
+                    // sh "git push origin ${targetBranch}"
                     
                     // Deploy to Docker (add your deployment steps here)
                     echo 'Deploy to Docker'
@@ -104,11 +104,12 @@ pipeline {
                     //     docker run -d -p 8081:8080 my-docker-project
                     // """
                     // Run Docker build
-                    def dockerfilePath = '/home/unit-testing-vue/Dockerfile'
-                    docker.build("my-docker-project:latest", "-f ${dockerfilePath} .")
-
-                    // Run Docker container
-                    docker.image("my-docker-project:latest").run("-d -p 8081:8081")
+                    // Run Docker build and container
+                    def dockerFilePath = '/home/unit-testing-vue/Dockerfile'
+                    docker.build("my-docker-project:latest", "-f ${dockerFilePath} .").inside {
+                        // Run Docker container
+                        sh "docker run -d -p 8081:8080 my-docker-project:latest"
+                    }
 
                 } else {
                     echo 'Deployment aborted by the user.'
