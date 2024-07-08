@@ -98,12 +98,18 @@ pipeline {
 
                     // Example Docker commands:
                     
-                    // sh '''
+                    // sh """
                     //     docker stop my-docker-project
-                    //     docker run -d -p 8080:8080 my-docker-project
-                    // '''
+                    //     docker rm my-docker-project
+                    //     docker run -d -p 8081:8080 my-docker-project
+                    // """
+                    // Run Docker build
+                    def dockerfilePath = '/home/unit-testing-vue/Dockerfile'
+                    docker.build("my-docker-project:latest", "-f ${dockerfilePath} .")
 
-                 
+                    // Run Docker container
+                    docker.image("my-docker-project:latest").run("-d -p 8081:8081")
+
                 } else {
                     echo 'Deployment aborted by the user.'
                 }
