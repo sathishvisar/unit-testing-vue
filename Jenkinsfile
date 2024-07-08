@@ -97,18 +97,31 @@ pipeline {
                     echo 'Deploy to Docker'
 
                     // Example Docker commands:
+
+                    // Build Docker image
+                    sh """
+                        docker build -t my-docker-project:latest -f /home/unit-testing-vue/Dockerfile .
+                    """
+
+                    // Run Docker container
+                    sh """
+                        docker stop my-docker-project || true
+                        docker rm my-docker-project || true
+                        docker run -d -p 8081:8080 --name my-docker-project my-docker-project:latest
+                    """
                     
                     // sh """
                     //     docker stop my-docker-project
                     //     docker rm my-docker-project
                     //     docker run -d -p 8081:8080 my-docker-project
                     // """
-                    def dockerFilePath = '/home/unit-testing-vue/Dockerfile'
-                    // Build Docker image
-                    docker.build("my-docker-project:latest", "-f ${dockerFilePath} .").inside {
-                        // Run Docker container
-                        sh "docker run -d -p 8081:8080 my-docker-project:latest"
-                    }
+
+                    // def dockerFilePath = '/home/unit-testing-vue/Dockerfile'
+                    // // Build Docker image
+                    // docker.build("my-docker-project:latest", "-f ${dockerFilePath} .").inside {
+                    //     // Run Docker container
+                    //     sh "docker run -d -p 8081:8080 my-docker-project:latest"
+                    // }
 
                 } else {
                     echo 'Deployment aborted by the user.'
