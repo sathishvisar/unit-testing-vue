@@ -25,7 +25,7 @@ pipeline {
                         branches: [[name: "${env.CHANGE_BRANCH ?: env.BRANCH_NAME}"]],
                         userRemoteConfigs: [[
                             url: 'https://github.com/sathishvisar/unit-testing-vue.git',
-                            credentialsId: 'aa79b591-6a52-45fa-a254-b2d7d0df55b9'
+                            credentialsId: 'cad86e44-afa1-476e-aedd-6d45655cce50'
                         ]]
                     ])
                 }
