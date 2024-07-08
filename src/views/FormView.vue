@@ -11,7 +11,7 @@
                   v-model="form.email"
                   type="email"
                   required
-                  placeholder="Enter your email"
+                  placeholder="Enter your emails"
                 />
               </b-form-group>
 
@@ -21,7 +21,7 @@
                   v-model="form.password"
                   type="password"
                   required
-                  placeholder="Enter your password"
+                  placeholder="Enter your passwords"
                 />
               </b-form-group>
 
