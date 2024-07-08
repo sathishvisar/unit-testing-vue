@@ -3,7 +3,7 @@
     <b-container>
       <b-row class="justify-content-md-center">
         <b-col md="4">
-          <b-card title="Login" class="mt-5">
+          <b-card title="Login view" class="mt-5">
             <b-form @submit.prevent="onSubmit">
               <b-form-group label="Email" label-for="email-input">
                 <b-form-input
