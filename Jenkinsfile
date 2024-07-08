@@ -103,12 +103,11 @@ pipeline {
                     //     docker rm my-docker-project
                     //     docker run -d -p 8081:8080 my-docker-project
                     // """
-                    // Run Docker build
-                    // Run Docker build and container
                     def dockerFilePath = '/home/unit-testing-vue/Dockerfile'
+                    // Build Docker image
                     docker.build("my-docker-project:latest", "-f ${dockerFilePath} .").inside {
                         // Run Docker container
-                        sh "/usr/bin/docker run -d -p 8081:8080 my-docker-project:latest"
+                        sh "docker run -d -p 8081:8080 my-docker-project:latest"
                     }
 
                 } else {
