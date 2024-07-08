@@ -8,7 +8,7 @@ pipeline {
     environment {
         CI = 'true'
         GIT_SSH_COMMAND = "ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no"
-        DOCKER_CREDENTIALS = "66d41917-7608-47f9-a7a1-2f39e2891ca3"
+        DOCKER_CREDENTIALS = "cad86e44-afa1-476e-aedd-6d45655cce50"
     }
 
     triggers {
