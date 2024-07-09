@@ -122,8 +122,16 @@ pipeline {
         }
     }
 }
+
 // git checkout master && npm install && npm run build && mkdir -p release && rm -rf release/* && cp -r dist/* release && pm2 restart myapp
 /*
+pm2 serve . 80 --name myapp
+
+pm2 start serve --name myapp -- -s release -l 5000
+
+pm2 start serve --name myapp -s release -p 80
+
+pm2 start serve --name myapp -s /home/unit-testing-vue/release -p 80
 
 docker run -d -p 8080:8080 -p 50000:50000 \
   -v /path/to/.ssh:/var/jenkins_home/.ssh \
