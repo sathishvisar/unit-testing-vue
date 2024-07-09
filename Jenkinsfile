@@ -62,6 +62,7 @@ pipeline {
                 )
 
                 if (userInput) {
+                    /**
                     // Configure Git user
                     def GIT_USEREMAIL = 'sathish.visar@gmail.com'
                     def GIT_USERNAME = 'sathishvisar'
@@ -95,6 +96,7 @@ pipeline {
                     
                     // Deploy to Docker (add your deployment steps here)
                     echo 'Deploy to Docker'
+                    **/
 
                     /**
                     // Example Docker commands:
