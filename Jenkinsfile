@@ -122,7 +122,7 @@ pipeline {
         }
     }
 }
-git checkout master && npm install && npm run build && mkdir -p release && rm -rf release/* && cp -r dist/* release && pm2 restart myapp
+// git checkout master && npm install && npm run build && mkdir -p release && rm -rf release/* && cp -r dist/* release && pm2 restart myapp
 /*
 
 docker run -d -p 8080:8080 -p 50000:50000 \
