@@ -96,6 +96,7 @@ pipeline {
                     // Deploy to Docker (add your deployment steps here)
                     echo 'Deploy to Docker'
 
+                    /**
                     // Example Docker commands:
                     def dockerImage = "my-docker-project:latest"
                     def containerName = "my-docker-project"
@@ -110,6 +111,8 @@ pipeline {
 
                     // Run the new container with a different name and expose ports
                     sh "docker run -d -p 8081:8080 --name ${containerName} ${dockerImage}"
+                    **/
+                    sh "npm install && npm run build && mkdir -p release && rm -rf release/* && cp -r dist/* release && pm2 restart campaygn_v3"
                 } else {
                     echo 'Deployment aborted by the user.'
                 }
