@@ -68,8 +68,8 @@ export default {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #24263a;
-  background-image: url(https://app.campaygn.com/img/login_bg.44c3fe35.png);
+  /* background-color: #24263a;
+  background-image: url(https://app.campaygn.com/img/login_bg.44c3fe35.png); */
   background-size: cover;
   min-height: 100vh;
 }
