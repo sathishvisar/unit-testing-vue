@@ -62,7 +62,6 @@ pipeline {
                 )
 
                 if (userInput) {
-                    /**
                     // Configure Git user
                     def GIT_USEREMAIL = 'sathish.visar@gmail.com'
                     def GIT_USERNAME = 'sathishvisar'
@@ -96,7 +95,6 @@ pipeline {
                     
                     // Deploy to Docker (add your deployment steps here)
                     echo 'Deploy to Docker'
-                    **/
 
                     /**
                     // Example Docker commands:
@@ -114,6 +112,7 @@ pipeline {
                     // Run the new container with a different name and expose ports
                     sh "docker run -d -p 8081:8080 --name ${containerName} ${dockerImage}"
                     **/
+                    
                     sh "git checkout master && npm install && npm run build && mkdir -p release && rm -rf release/* && cp -r dist/* release && pm2 restart myapp"
                 } else {
                     echo 'Deployment aborted by the user.'
@@ -122,8 +121,16 @@ pipeline {
         }
     }
 }
+
 // git checkout master && npm install && npm run build && mkdir -p release && rm -rf release/* && cp -r dist/* release && pm2 restart myapp
 /*
+pm2 serve . 80 --name myapp
+
+pm2 start serve --name myapp -- -s release -l 5000
+
+pm2 start serve --name myapp -s release -p 80
+
+pm2 start serve --name myapp -s /home/unit-testing-vue/release -p 80
 
 docker run -d -p 8080:8080 -p 50000:50000 \
   -v /path/to/.ssh:/var/jenkins_home/.ssh \
